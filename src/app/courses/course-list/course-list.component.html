@@ -38,9 +38,19 @@
           <app-star [rating]="course.rating"></app-star>
         </td>
         <td>
-          <a [routerLink]="['/course/info', course.id]" class="btn btn-primary"
-            >Edit</a
+          <a
+            [routerLink]="['/courses/info', course.id]"
+            class="btn btn-outline-primary mr-2"
+            [style]="'margin-right: 15px'"
+            >Editar</a
           >
+
+          <button
+            (click)="deleteById(course.id)"
+            class="btn btn-outline-danger"
+          >
+            Deletar
+          </button>
         </td>
       </tr>
     </tbody>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
-import { CourseService } from './course.service';
+import { CourseService } from '../course.service';
+
+import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: './course-list.component.html',
@@ -16,8 +18,44 @@ export class CourseListComponent implements OnInit {
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this._courses = this.courseService.retrieveAll();
-    this.filteredCourses = this._courses;
+    this.retrieveAll();
+  }
+
+  retrieveAll(): void {
+    this.courseService.retrieveAll().subscribe({
+      next: (courses) => {
+        this._courses = courses;
+        this.filteredCourses = this._courses;
+      },
+      error: () =>
+        Swal.fire({
+          title: 'Ops!',
+          text: 'Não foi possível encontrar o curso!',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        }),
+    });
+  }
+
+  deleteById(courseId: number): void {
+    this.courseService.deleteById(courseId).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Curso Deletado',
+          text: 'O curso foi deletado com sucesso!',
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+        });
+        this.retrieveAll();
+      },
+      error: () =>
+        Swal.fire({
+          title: 'Ops!',
+          text: 'Ocorreu um erro e não foi possível deletar!',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        }),
+    });
   }
 
   set filter(value: string) {
@@ -25,7 +63,9 @@ export class CourseListComponent implements OnInit {
 
     this.filteredCourses = this._courses.filter(
       (course: Course) =>
-        course.name.toLowerCase().indexOf(this._filterBy.toLowerCase()) > -1
+        course.name
+          .toLocaleLowerCase()
+          .indexOf(this._filterBy.toLocaleLowerCase()) > -1
     );
   }
 
