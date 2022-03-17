@@ -1,0 +1,19 @@
+#image {
+  height: auto;
+  width: auto;
+}
+
+.images-img {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.images-img img {
+  display: block;
+  margin: auto;
+  padding: auto;
+  text-align: center;
+}

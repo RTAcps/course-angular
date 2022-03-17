@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a [routerLink]="['/courses']" class="navbar-brand">
+    <img
+      src="../../assets/images/learn_online_woman_workspace.png"
+      alt="imagem de desenho representativo de uma mulher, cabelo avermelhado, blusa amarela, headphone roxo, na sua frente está uma mesa com um notebook azul, uma caneca vermelha à sua direita e dois livros (amarelo e roxo) à sua esquerda, saindo dois balões indicativos de conversação."
+      [style]="
+        'margin-left: 15px; padding-left: 15px; height: 75px; witdh: 75px'
+      "
+    />
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          [routerLink]="['/courses']"
+          routerLinkActive="active"
+          class="nav-link"
+          >Cursos</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
